@@ -10,6 +10,8 @@ namespace AStudyInTest.Domain
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Distribution> Distributions { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         #region Constructors...
 
