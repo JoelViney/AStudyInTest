@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=119.9.52.24\\SQLEXPRESS;Initial Catalog=AStudyInTest;Persist Security Info=False;User ID=sa;Password=K@ng@r00!!;MultipleActiveResultSets=True"
+  }
+}

@@ -1,0 +1,37 @@
+﻿
+Application Goal
+================
+As a retailer the provides pre-ordered food to my customers I would like for my customers to be able to order online.
+
+Generate Orders
+===============
+* As a retailer I would like to be able to define the products that I sell and assign a price to them.
+
+* As a retailer I need to be able to de-activate a product so customers can no longer order them.
+
+* As a retailer I would like to be able to define delivery days.
+
+
+Customer Ordering
+=================
+* As a customer I would like to be able to create an account so I can buy stuff.
+
+* As a customer I would like to be able to place an order for delivery on one of the delivery days.
+
+* As a retailer I would like to be able to close orders for a delivery day a certain time before the event.
+
+* As a retailer I would like to be able to view a summary of my orders grouped by product for a delivery day.
+
+* As a retailer I would like to be able to view all of the orders for a delivery day.
+
+As a retailer what happens when I stuff up?
+* As a retailer I would like to be able to cancel all or part of an order.
+* As a retailer I would like to be able to substitute an order.
+* As a retailer I would like to be able to provide a discount on an order.
+* As a retailer I would like to be able to create an order for a customer.
+
+* As a retailer I would like to be able to hide a future delivery until I have finished working out my products.
+
+
+
+	
