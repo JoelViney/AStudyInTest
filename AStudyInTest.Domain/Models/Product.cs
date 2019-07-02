@@ -7,6 +7,7 @@ namespace AStudyInTest.Domain.Models
     {
         public Product() 
         {
+            this.Price = 0.00M; 
             this.Active = true;
         }
 

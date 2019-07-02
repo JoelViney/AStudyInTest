@@ -18,7 +18,7 @@ namespace AStudyInTest.Domain.Services
         }
 
 
-        public async Task CreateAsync(T item)
+        public virtual async Task CreateAsync(T item)
         {
             this.DatabaseContext.Add(item);
             await this.DatabaseContext.SaveChangesAsync();
