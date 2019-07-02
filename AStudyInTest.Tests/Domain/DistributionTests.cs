@@ -17,13 +17,13 @@ namespace AStudyInTest.Domain
             // Arrange
             var service = new DistributionService(DatabaseHelper.GetInMemoryContext());
             var day = DateTime.Now.Date;
-            var distribution = new Distribution() { Date = day };
+            var item = new Distribution() { Date = day };
 
             // Act
-            await service.CreateAsync(distribution);
+            await service.CreateAsync(item);
 
             // Assert
-            var result = await service.GetAsync(distribution.Id);
+            var result = await service.GetAsync(item.Id);
             Assert.AreEqual(day, result.Date);
         }
     }

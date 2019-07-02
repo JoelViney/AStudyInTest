@@ -7,24 +7,11 @@ using System.Threading.Tasks;
 
 namespace AStudyInTest.Domain.Services
 {
-    public class DistributionService
+    public class DistributionService : ServiceBase<Distribution>
     {
-        private readonly DatabaseContext DatabaseContext;
-
-        public DistributionService(DatabaseContext databaseContext)
+        public DistributionService(DatabaseContext databaseContext) : base(databaseContext)
         {
-            this.DatabaseContext = databaseContext;
-        }
 
-        public async Task CreateAsync(Distribution distribution)
-        {
-            this.DatabaseContext.Add(distribution);
-            await this.DatabaseContext.SaveChangesAsync();
-        }
-
-        public Task<Distribution> GetAsync(int id)
-        {
-            return this.DatabaseContext.Distributions.SingleAsync(x => x.Id == id);
         }
     }
 }
