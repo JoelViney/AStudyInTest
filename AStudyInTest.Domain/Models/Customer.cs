@@ -3,18 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AStudyInTest.Domain.Models
 {
-    public class Product : ModelBase
+    public class Customer : ModelBase
     {
-        public Product() 
-        {
-            this.Active = true;
-        }
-
         [Required, MaxLength(50)]
         public string Name { get; set; }
-
-        public decimal Price { get; set; }
-
-        public bool Active { get; set; }
     }
 }

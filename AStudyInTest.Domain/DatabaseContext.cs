@@ -9,6 +9,7 @@ namespace AStudyInTest.Domain
     public class DatabaseContext: DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Distribution> Distributions { get; set; }
 
         #region Constructors...
 
@@ -47,6 +48,7 @@ namespace AStudyInTest.Domain
 
             // Create Indexes
             modelBuilder.Entity<Product>().HasIndex(x => new { x.Name }).IsUnique();
+            modelBuilder.Entity<Customer>().HasIndex(x => new { x.Name }).IsUnique();
 
             base.OnModelCreating(modelBuilder);
         }
