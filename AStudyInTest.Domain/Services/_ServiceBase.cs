@@ -8,7 +8,7 @@ namespace AStudyInTest.Domain.Services
     public abstract class ServiceBase<T> 
         where T : ModelBase
     {
-        private readonly DatabaseContext DatabaseContext;
+        protected readonly DatabaseContext DatabaseContext;
         protected IQueryable<T> Table { get; private set; }
 
         public ServiceBase(DatabaseContext databaseContext)

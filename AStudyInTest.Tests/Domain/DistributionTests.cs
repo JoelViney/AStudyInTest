@@ -12,7 +12,7 @@ namespace AStudyInTest.Domain
     public class DistributionTests
     {
         [TestMethod]
-        public async Task CreateDistributionTest()
+        public async Task CreateDistribution()
         {
             // Arrange
             var service = new DistributionService(DatabaseHelper.GetInMemoryContext());

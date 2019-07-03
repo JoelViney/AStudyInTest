@@ -20,6 +20,7 @@ Customer Ordering
 
 * As a retailer I would like to be able to close orders for a delivery day a certain time before the event.
 
+
 * As a retailer I would like to be able to view a summary of my orders grouped by product for a delivery day.
 
 * As a retailer I would like to be able to view all of the orders for a delivery day.

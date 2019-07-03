@@ -18,5 +18,10 @@ namespace AStudyInTest.Helpers
         {
             get { return DateTime.Now.Date.AddDays(-1); }
         }
+
+        public static DateTime EndOfDay(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace AStudyInTest.Domain
     public class CustomerTests
     {
         [TestMethod]
-        public async Task CreateCustomerTest()
+        public async Task CreateCustomer()
         {
             // Arrange
             var service = new CustomerService(DatabaseHelper.GetInMemoryContext());

@@ -22,5 +22,22 @@ namespace AStudyInTest.Domain.Models
         public Distribution Distribution { get; set; }
 
         public virtual List<OrderLine> Lines { get; set; }
+
+        public bool Cancelled { get; set; }
+
+        public decimal Total
+        {
+            get
+            {
+                var total = 0.00M;
+
+                foreach (var line in this.Lines)
+                {
+                    total += line.Total;
+                }
+
+                return total;
+            }
+        }
     }
 }

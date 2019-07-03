@@ -16,6 +16,22 @@ namespace AStudyInTest.Domain.Models
         public int ProductId { get; set; }
         public Product Product { get; set; }
         
+        public decimal Amount { get; set; }
         public int Quantity { get; set; }
+
+        public bool Cancelled { get; set; }
+
+        public decimal Total
+        {
+            get
+            {
+                return this.Amount * this.Quantity;
+            }
+        }
+
+        public bool IsNew()
+        {
+            return (this.Id == 0);
+        }
     }
 }

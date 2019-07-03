@@ -11,7 +11,7 @@ namespace AStudyInTest.Domain
     public class ProductTests
     {
         [TestMethod]
-        public async Task CreateProductTest()
+        public async Task CreateProduct()
         {
             // Arrange
             var service = new ProductService(DatabaseHelper.GetInMemoryContext());
@@ -28,7 +28,7 @@ namespace AStudyInTest.Domain
         }
 
         [TestMethod]
-        public async Task DeactivateProductTest()
+        public async Task DeactivateProduct()
         {
             // Arrange
             var service = new ProductService(DatabaseHelper.GetInMemoryContext());
