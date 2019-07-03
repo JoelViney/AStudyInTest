@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace AStudyInTest.Domain.Models
 {
@@ -8,5 +8,7 @@ namespace AStudyInTest.Domain.Models
         public DateTime Date { get; set; }
 
         public DateTime LastOrderDateTime { get; set; }
+
+        public virtual List<Order> Orders { get; set; }
     }
 }

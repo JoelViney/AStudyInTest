@@ -10,29 +10,8 @@ using System.Linq;
 namespace AStudyInTest.Domain
 {
     [TestClass]
-    public class OrderTests
+    public class OrderTests : TestBase
     {
-        private async Task<Distribution> AssureDistributionExistsAsync(Distribution item, DatabaseContext databaseContext)
-        {
-            var service = new DistributionService(databaseContext);
-            await service.CreateAsync(item);
-            return item;
-        }
-
-        private async Task<Customer> AssureCustomerExistsAsync(Customer item, DatabaseContext databaseContext)
-        {
-            var service = new CustomerService(databaseContext);
-            await service.CreateAsync(item);
-            return item;
-        }
-
-        private async Task<Product> AssureProductExistsAsync(Product item, DatabaseContext databaseContext)
-        {
-            var service = new ProductService(databaseContext);
-            await service.CreateAsync(item);
-            return item;
-        }
-
         [TestMethod]
         public async Task CreateOrder()
         {
