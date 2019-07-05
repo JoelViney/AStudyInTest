@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AStudyInTest.Domain.Models
+namespace AStudyInTest.Domain.Models.Reports
 {
     public class PickingListReport
     {

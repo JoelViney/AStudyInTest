@@ -1,11 +1,10 @@
 ﻿using AStudyInTest.Domain.Models;
 using AStudyInTest.Domain.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System;
-using System.Threading.Tasks;
 using AStudyInTest.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AStudyInTest.Domain
 {
@@ -17,11 +16,12 @@ namespace AStudyInTest.Domain
         {
             // Arrange
             var databaseContext = DatabaseHelper.GetInMemoryContext();
-            var service = new OrderService(databaseContext);
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var product = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 10.00M }, databaseContext);
+
+            var service = new OrderService(databaseContext, this.GetCustomerUser(customer.Id));
 
             var order = new Order() { Customer = customer, Distribution = distribution };
             order.Lines.Add(new OrderLine() { Quantity = 2, Product = product });
@@ -41,11 +41,12 @@ namespace AStudyInTest.Domain
         {
             // Arrange
             var databaseContext = DatabaseHelper.GetInMemoryContext();
-            var service = new OrderService(databaseContext);
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var product = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}" }, databaseContext);
+
+            var service = new OrderService(databaseContext, this.GetCustomerUser(customer.Id));
 
             var order = new Order() { Customer = customer, Distribution = distribution };
             order.Lines.Add(new OrderLine() { Quantity = 1, Product = product });
@@ -63,11 +64,12 @@ namespace AStudyInTest.Domain
         {
             // Arrange
             var databaseContext = DatabaseHelper.GetInMemoryContext();
-            var service = new OrderService(databaseContext);
-
+            
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var product = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Active = false }, databaseContext);
+
+            var service = new OrderService(databaseContext, this.GetCustomerUser(customer.Id));
 
             var order = new Order() { Customer = customer, Distribution = distribution };
             order.Lines.Add(new OrderLine() { Quantity = 1, Product = product });
@@ -85,11 +87,12 @@ namespace AStudyInTest.Domain
         {
             // Arrange
             var databaseContext = DatabaseHelper.GetInMemoryContext();
-            var service = new OrderService(databaseContext);
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var product = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Active = false }, databaseContext);
+
+            var service = new OrderService(databaseContext, this.GetCustomerUser(customer.Id));
 
             var order = new Order() { Customer = customer, Distribution = distribution };
             order.Lines.Add(new OrderLine() { Quantity = 1, Product = product });
@@ -111,11 +114,12 @@ namespace AStudyInTest.Domain
         {
             // Arrange
             var databaseContext = DatabaseHelper.GetInMemoryContext();
-            var service = new OrderService(databaseContext);
-
+            
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var product = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Active = false }, databaseContext);
+
+            var service = new OrderService(databaseContext, this.GetCustomerUser(customer.Id));
 
             var order = new Order() { Customer = customer, Distribution = distribution };
             order.Lines.Add(new OrderLine() { Quantity = 1, Product = product });

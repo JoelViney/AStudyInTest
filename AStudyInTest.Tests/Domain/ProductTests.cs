@@ -1,6 +1,5 @@
 ﻿using AStudyInTest.Domain.Models;
 using AStudyInTest.Domain.Services;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
@@ -8,13 +7,13 @@ using System.Threading.Tasks;
 namespace AStudyInTest.Domain
 {
     [TestClass]
-    public class ProductTests
+    public class ProductTests : TestBase
     {
         [TestMethod]
         public async Task CreateProduct()
         {
             // Arrange
-            var service = new ProductService(DatabaseHelper.GetInMemoryContext());
+            var service = new ProductService(this.GetInMemoryContext(), this.GetRetailerUser());
             var product = new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 9.95M };
 
             // Act
@@ -31,7 +30,7 @@ namespace AStudyInTest.Domain
         public async Task DeactivateProduct()
         {
             // Arrange
-            var service = new ProductService(DatabaseHelper.GetInMemoryContext());
+            var service = new ProductService(this.GetInMemoryContext(), this.GetRetailerUser());
             var product = new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 9.95M };
             await service.CreateAsync(product);
 

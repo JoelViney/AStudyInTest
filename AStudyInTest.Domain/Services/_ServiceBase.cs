@@ -8,12 +8,14 @@ namespace AStudyInTest.Domain.Services
     public abstract class ServiceBase<T> 
         where T : ModelBase
     {
-        protected readonly DatabaseContext DatabaseContext;
-        protected IQueryable<T> Table { get; private set; }
+        protected DatabaseContext DatabaseContext { get; }
+        protected ICurrentUser CurrentUser { get; }
+        protected IQueryable<T> Table { get; }
 
-        public ServiceBase(DatabaseContext databaseContext)
+        public ServiceBase(DatabaseContext databaseContext, ICurrentUser currentUser)
         {
             this.DatabaseContext = databaseContext;
+            this.CurrentUser = currentUser;
             this.Table = this.DatabaseContext.Set<T>();
         }
 
@@ -26,7 +28,14 @@ namespace AStudyInTest.Domain.Services
 
         public async Task<T> GetAsync(int id)
         {
-            return await this.Table.SingleAsync(x => x.Id == id);
+            var item = await this.Table.SingleOrDefaultAsync(x => x.Id == id);
+
+            if (item == null)
+            {
+                throw new NotFoundException();
+            }
+
+            return item;
         }
     }
 }

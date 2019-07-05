@@ -9,7 +9,7 @@ namespace AStudyInTest.Domain.Services
 {
     public class DistributionService : ServiceBase<Distribution>
     {
-        public DistributionService(DatabaseContext databaseContext) : base(databaseContext)
+        public DistributionService(DatabaseContext databaseContext, ICurrentUser currentUser) : base(databaseContext, currentUser)
         {
 
         }

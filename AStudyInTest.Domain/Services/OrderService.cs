@@ -9,12 +9,12 @@ namespace AStudyInTest.Domain.Services
     {
         private ITimeService _timeService;
 
-        public OrderService(DatabaseContext databaseContext) : this(databaseContext, new TimeService())
+        public OrderService(DatabaseContext databaseContext, ICurrentUser currentUser) : this(databaseContext, currentUser, new TimeService())
         {
 
         }
 
-        public OrderService(DatabaseContext databaseContext, ITimeService timeService) : base(databaseContext)
+        public OrderService(DatabaseContext databaseContext, ICurrentUser currentUser, ITimeService timeService) : base(databaseContext, currentUser)
         {
             _timeService = timeService;
         }

@@ -1,9 +1,7 @@
-﻿using AStudyInTest.Domain.Models;
+﻿using AStudyInTest.Domain.Models.Reports;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AStudyInTest.Domain.Services
 {

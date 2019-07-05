@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace AStudyInTest
+namespace AStudyInTest.Helpers
 {
     internal static class DatabaseHelper
     {

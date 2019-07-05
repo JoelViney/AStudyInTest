@@ -2,20 +2,18 @@
 using AStudyInTest.Domain.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AStudyInTest.Domain
 {
     [TestClass]
-    public class DistributionTests
+    public class DistributionTests : TestBase
     {
         [TestMethod]
         public async Task CreateDistribution()
         {
             // Arrange
-            var service = new DistributionService(DatabaseHelper.GetInMemoryContext());
+            var service = new DistributionService(this.GetInMemoryContext(), this.GetRetailerUser());
             var day = DateTime.Now.Date;
             var item = new Distribution() { Date = day };
 
