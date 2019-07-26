@@ -9,6 +9,7 @@ namespace AStudyInTest.Domain
     [TestClass]
     public class DistributionTests : TestBase
     {
+        // As a retailer I would like to be able to define delivery days.
         [TestMethod]
         public async Task CreateDistribution()
         {

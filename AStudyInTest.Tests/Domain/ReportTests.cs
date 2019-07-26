@@ -15,7 +15,7 @@ namespace AStudyInTest.Domain
         public async Task PickingListReport()
         {
             // Arrange
-            var databaseContext = DatabaseHelper.GetInMemoryContext();
+            var databaseContext = this.GetInMemoryContext();
             var service = new ReportService(databaseContext);
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);

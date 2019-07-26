@@ -3,13 +3,35 @@ Application Goal
 ================
 As a retailer the provides pre-ordered food to my customers I would like for my customers to be able to order online.
 
-Generate Orders
-===============
-* As a retailer I would like to be able to define the products that I sell and assign a price to them.
+Customers
+=========
+* As a retailer I would like to be able to create customers and send them an invitation to join.
+* As a retailer I would like to be able to re-send an invitation to join.
+* As a retailer I would like to be able to update my customers details.
+* As a retailer I would like to be able to deactivate my customers.
 
-* As a retailer I need to be able to de-activate a product so customers can no longer order them.
+Products
+========
+// As a retailer I would like to be able to define the products that I sell.
+// As a retailer I would like to be able to update the products that I sell.
+// As a retailer I would like to be able to delete my products that I created by mistake.
+// As a retailer I would like to be able to delete my products but only if they haven't been added to an order.
 
-* As a retailer I would like to be able to define delivery days.
+// As a retailer I would like to be able to see all of the products.
+// As a customer I would like to be able to see the products that are available.
+
+
+Distribution
+============
+// As a retailer I would like to be able to define delivery days.
+
+Orders
+======
+// As a retailer I would like it so that if a product is deactivated it cannot be added to any orders.
+
+* As a retailer I would like to still process deactivated products if they already exist in an order.
+* If a product is deactivated and an existing order exists the quantity cannot be increase by the customer.
+
 
 
 Customer Ordering

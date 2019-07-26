@@ -8,7 +8,7 @@ namespace AStudyInTest.Domain.Services
 
     public class ReportService
     {
-        private DatabaseContext _databaseContext;
+        private readonly DatabaseContext _databaseContext;
 
         public ReportService(DatabaseContext databaseContext)
         {

@@ -12,6 +12,7 @@ namespace AStudyInTest.Domain
         public DbSet<Distribution> Distributions { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
 
         #region Constructors...
 

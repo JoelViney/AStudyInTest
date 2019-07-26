@@ -15,7 +15,7 @@ namespace AStudyInTest.Domain
         public async Task CreateOrder()
         {
             // Arrange
-            var databaseContext = DatabaseHelper.GetInMemoryContext();
+            var databaseContext = this.GetInMemoryContext();
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
@@ -40,7 +40,7 @@ namespace AStudyInTest.Domain
         public async Task CreateOrderAfterLastOrderDateTime()
         {
             // Arrange
-            var databaseContext = DatabaseHelper.GetInMemoryContext();
+            var databaseContext = this.GetInMemoryContext();
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
@@ -58,12 +58,13 @@ namespace AStudyInTest.Domain
         }
 
 
+        // As a retailer I would like it so that if a product is deactivated it cannot be added to any orders.
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public async Task CreateOrderWithDeactivatedProduct()
         {
             // Arrange
-            var databaseContext = DatabaseHelper.GetInMemoryContext();
+            var databaseContext = this.GetInMemoryContext();
             
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
@@ -86,7 +87,7 @@ namespace AStudyInTest.Domain
         public async Task CancelOrder()
         {
             // Arrange
-            var databaseContext = DatabaseHelper.GetInMemoryContext();
+            var databaseContext = this.GetInMemoryContext();
 
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
@@ -113,7 +114,7 @@ namespace AStudyInTest.Domain
         public async Task CancelOrderLine()
         {
             // Arrange
-            var databaseContext = DatabaseHelper.GetInMemoryContext();
+            var databaseContext = this.GetInMemoryContext();
             
             var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Today, LastOrderDateTime = DateHelper.Yesterday }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
