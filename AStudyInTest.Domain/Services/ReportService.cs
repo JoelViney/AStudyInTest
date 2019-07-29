@@ -1,4 +1,5 @@
-﻿using AStudyInTest.Domain.Models.Reports;
+﻿using AStudyInTest.Domain.Models;
+using AStudyInTest.Domain.Models.Reports;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,22 +16,22 @@ namespace AStudyInTest.Domain.Services
             _databaseContext = databaseContext;
         }
 
-        public async Task<PickingListReport> GetPickingListAsync(int distributionId)
+        public async Task<PickingListReport> GetPickingListAsync(int deliveryDayId)
         {
-            var distribution = await _databaseContext.Distributions
+            var deliveryDay = await _databaseContext.DeliveryDays
                 .Include(x => x.Orders)
                 .ThenInclude(x => x.Lines)
                 .ThenInclude(x => x.Product)
-                .FirstAsync(x => x.Id == distributionId);
+                .FirstAsync(x => x.Id == deliveryDayId);
 
             var report = new PickingListReport
             {
-                OrderCount = distribution.Orders.Count(x => !x.Cancelled)
+                OrderCount = deliveryDay.Orders.Count(x => x.Status != OrderStatus.Cancelled)
             };
 
-            foreach (var order in distribution.Orders)
+            foreach (var order in deliveryDay.Orders)
             {
-                if (!order.Cancelled)
+                if (order.Status != OrderStatus.Cancelled)
                 {
                     foreach (var orderLine in order.Lines)
                     {

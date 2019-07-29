@@ -1,32 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AStudyInTest.Domain.Models
 {
     public class OrderLine : ModelBase
     {
-        [Column("OrderID"), Required, ForeignKey("Order")]
-        public int OrderId { get; set; }
-        public virtual Order Order { get; set; }
+        #region Constuctors..
 
-        [Column("ProductID"), Required, ForeignKey("Product")]
+        public OrderLine()
+        {
+
+        }
+
+        #endregion
+
+        public int OrderId { get; set; }
+
         public int ProductId { get; set; }
-        public Product Product { get; set; }
         
         public decimal Amount { get; set; }
+
         public int Quantity { get; set; }
 
         public bool Cancelled { get; set; }
 
-        public decimal Total
+
+        [ForeignKey("OrderId")]
+        public virtual Order Order { get; set; }
+
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
+
+
+        public decimal GetTotal()
         {
-            get
-            {
-                return this.Amount * this.Quantity;
-            }
+            return this.Amount * this.Quantity;
         }
 
         public bool IsNew()

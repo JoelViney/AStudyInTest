@@ -18,22 +18,22 @@ namespace AStudyInTest.Domain
             var databaseContext = this.GetInMemoryContext();
             var service = new ReportService(databaseContext);
 
-            var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);
+            var deliveryDay = await AssureDeliveryDayExistsAsync(new DeliveryDay() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var productA = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 10.00M }, databaseContext);
             var productB = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 5.00M }, databaseContext);
 
-            var order1 = new Order() { Customer = customer, Distribution = distribution };
+            var order1 = new Order() { Customer = customer, DeliveryDay = deliveryDay };
             order1.Lines.Add(new OrderLine() { Quantity = 2, Product = productA });
 
-            var order2 = new Order() { Customer = customer, Distribution = distribution };
+            var order2 = new Order() { Customer = customer, DeliveryDay = deliveryDay };
             order2.Lines.Add(new OrderLine() { Quantity = 1, Product = productB});
 
             await AssureOrderExistsAsync(order1, databaseContext);
             await AssureOrderExistsAsync(order2, databaseContext);
 
             // Act
-            var report = await service.GetPickingListAsync(distribution.Id);
+            var report = await service.GetPickingListAsync(deliveryDay.Id);
 
             Assert.AreEqual(2, report.Lines.Count);
             Assert.AreEqual(2, report.OrderCount);

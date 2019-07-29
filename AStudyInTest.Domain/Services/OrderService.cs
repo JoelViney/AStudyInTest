@@ -23,9 +23,9 @@ namespace AStudyInTest.Domain.Services
         public override async Task CreateAsync(Order item)
         {
             // Validation
-            if (_timeService.GetDateTimeNow() > item.Distribution.LastOrderDateTime)
+            if (_timeService.GetDateTimeNow() > item.DeliveryDay.LastOrderDateTime)
             {
-                throw new Exception($"Orders have closed for the delivery on {item.Distribution.LastOrderDateTime:dddd} the {DateTimeHelper.GetDaySuffix(item.Distribution.LastOrderDateTime)} of {item.Distribution.LastOrderDateTime:MMMM}.");
+                throw new Exception($"Orders have closed for the delivery on {item.DeliveryDay.LastOrderDateTime:dddd} the {DateTimeHelper.GetDaySuffix(item.DeliveryDay.LastOrderDateTime)} of {item.DeliveryDay.LastOrderDateTime:MMMM}.");
             }
 
             foreach (var line in item.Lines)
@@ -51,6 +51,8 @@ namespace AStudyInTest.Domain.Services
             {
                 if (line.IsNew())
                 {
+                    // Set the price at time of order creation purchase.
+                    line.Amount = line.Product.Price;
                     base.DatabaseContext.Add(line);
                 }
             }

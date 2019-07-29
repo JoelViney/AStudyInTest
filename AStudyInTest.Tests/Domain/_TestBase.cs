@@ -22,9 +22,9 @@ namespace AStudyInTest.Domain
             return new CurrentUserStub() { UserId = 1, Role = UserRole.Customer, CustomerId = customerId };
         }
 
-        protected async Task<Distribution> AssureDistributionExistsAsync(Distribution item, DatabaseContext databaseContext)
+        protected async Task<DeliveryDay> AssureDeliveryDayExistsAsync(DeliveryDay item, DatabaseContext databaseContext)
         {
-            var service = new DistributionService(databaseContext, this.GetRetailerUser());
+            var service = new DeliveryDayService(databaseContext, this.GetRetailerUser());
             await service.CreateAsync(item);
             return item;
         }

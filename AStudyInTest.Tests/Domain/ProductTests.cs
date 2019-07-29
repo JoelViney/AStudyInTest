@@ -4,6 +4,7 @@ using AStudyInTest.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AStudyInTest.Domain
@@ -19,16 +20,18 @@ namespace AStudyInTest.Domain
             var databaseContext = this.GetInMemoryContext();
             var service = new ProductService(databaseContext, this.GetRetailerUser());
 
-            await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 10.00M }, databaseContext);
-            await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 11.00M }, databaseContext);
-            await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 12.00M }, databaseContext);
-            await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 13.00M, Active = false }, databaseContext);
+            await AssureProductExistsAsync(new Product() { Name = $"A_Product_{Guid.NewGuid()}", Price = 10.00M }, databaseContext);
+            await AssureProductExistsAsync(new Product() { Name = $"B_Product_{Guid.NewGuid()}", Price = 11.00M }, databaseContext);
+            await AssureProductExistsAsync(new Product() { Name = $"C_Product_{Guid.NewGuid()}", Price = 12.00M }, databaseContext);
+            await AssureProductExistsAsync(new Product() { Name = $"D_Product_{Guid.NewGuid()}", Price = 13.00M, Active = false }, databaseContext);
 
             // Act
             var results = await service.GetActiveListAsync();
 
             // Assert
             Assert.AreEqual(3, results.Count);
+            var orderedList = results.OrderBy(x => x.Name);
+            Assert.IsTrue(results.SequenceEqual(orderedList), "The results are not ordered.");
         }
 
         // As a retailer I would like to be able to see all of the products.
@@ -109,6 +112,7 @@ namespace AStudyInTest.Domain
             Assert.IsNull(result);
         }
 
+
         // As a retailer I would like to be able to delete my products but only if they haven't been added to an order.
         [TestMethod]
         [ExpectedException(typeof(MethodNotAllowedException))]
@@ -117,13 +121,13 @@ namespace AStudyInTest.Domain
             // Arrange
             var databaseContext = this.GetInMemoryContext();
 
-            var distribution = await AssureDistributionExistsAsync(new Distribution() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);
+            var deliveryDay = await AssureDeliveryDayExistsAsync(new DeliveryDay() { Date = DateHelper.Tomorrow, LastOrderDateTime = DateHelper.Today.EndOfDay() }, databaseContext);
             var customer = await AssureCustomerExistsAsync(new Customer() { Name = $"Customer_{Guid.NewGuid()}" }, databaseContext);
             var product = await AssureProductExistsAsync(new Product() { Name = $"Product_{Guid.NewGuid()}", Price = 10.00M }, databaseContext);
 
             var orderService = new OrderService(databaseContext, this.GetCustomerUser(customer.Id));
 
-            var order = new Order() { Customer = customer, Distribution = distribution };
+            var order = new Order() { Customer = customer, DeliveryDay = deliveryDay };
             order.Lines.Add(new OrderLine() { Quantity = 2, Product = product });
             await orderService.CreateAsync(order);
 

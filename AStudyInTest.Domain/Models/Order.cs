@@ -1,43 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace AStudyInTest.Domain.Models
 {
+    public enum OrderStatus
+    {
+        Draft,
+        Ordered,
+        Cancelled,
+    }
+
     public class Order : ModelBase
     {
+        #region Constuctors..
+
         public Order()
         {
             this.Lines = new List<OrderLine>();
         }
 
-        [Column("CustomerID"), ForeignKey("Customer")]
-        public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
+        #endregion
 
-        [Column("Distribution"), Required, ForeignKey("Distribution")]
-        public int DistributionId { get; set; }
-        public Distribution Distribution { get; set; }
+
+        public int CustomerId { get; set; }
+
+        public int DeliveryDayId { get; set; }
+
+        public OrderStatus Status { get; set; }
 
         public virtual List<OrderLine> Lines { get; set; }
 
-        public bool Cancelled { get; set; }
 
-        public decimal Total
+        [ForeignKey("CustomerId")]
+        public virtual Customer Customer { get; set; }
+
+        [ForeignKey("DeliveryDayId")]
+        public DeliveryDay DeliveryDay { get; set; }
+
+
+        public decimal GetTotal()
         {
-            get
+            var total = 0.00M;
+
+            foreach (var line in this.Lines)
             {
-                var total = 0.00M;
-
-                foreach (var line in this.Lines)
-                {
-                    total += line.Total;
-                }
-
-                return total;
+                total += line.GetTotal();
             }
+
+            return total;
         }
+
     }
 }

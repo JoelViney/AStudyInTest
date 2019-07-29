@@ -16,7 +16,7 @@ namespace AStudyInTest.Domain.Services
 
         public async Task<List<Product>> GetActiveListAsync()
         {
-            var results = await this.DatabaseContext.Products.Where(x => x.Active).ToListAsync();
+            var results = await this.DatabaseContext.Products.Where(x => x.Active).OrderBy(x => x.Name).ToListAsync();
 
             return results;
         }

@@ -24,6 +24,5 @@ namespace AStudyInTest.Domain
 
             Assert.AreEqual(item.Name, result.Name);
         }
-
     }
 }

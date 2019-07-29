@@ -1,8 +1,4 @@
 ﻿
-Application Goal
-================
-As a retailer the provides pre-ordered food to my customers I would like for my customers to be able to order online.
-
 Customers
 =========
 * As a retailer I would like to be able to create customers and send them an invitation to join.
@@ -10,39 +6,39 @@ Customers
 * As a retailer I would like to be able to update my customers details.
 * As a retailer I would like to be able to deactivate my customers.
 
-Products
-========
-// As a retailer I would like to be able to define the products that I sell.
-// As a retailer I would like to be able to update the products that I sell.
-// As a retailer I would like to be able to delete my products that I created by mistake.
-// As a retailer I would like to be able to delete my products but only if they haven't been added to an order.
-
-// As a retailer I would like to be able to see all of the products.
-// As a customer I would like to be able to see the products that are available.
-
-
-Distribution
-============
-// As a retailer I would like to be able to define delivery days.
-
-Orders
-======
-// As a retailer I would like it so that if a product is deactivated it cannot be added to any orders.
-
-* As a retailer I would like to still process deactivated products if they already exist in an order.
-* If a product is deactivated and an existing order exists the quantity cannot be increase by the customer.
-
-
-
-Customer Ordering
-=================
 * As a customer I would like to be able to create an account so I can buy stuff.
 
-* As a customer I would like to be able to place an order for delivery on one of the delivery days.
+Products
+========
+	* As a retailer I would like to be able to define the products that I sell.
+	* As a retailer I would like to be able to update the products that I sell.
+	* As a retailer I need to be able to de-activate a product so customers can no longer order them.
+	* As a retailer I would like to be able to delete my products that I created by mistake.
+	* As a retailer I would like to be able to delete my products but only if they haven't been added to an order.
 
-* As a retailer I would like to be able to close orders for a delivery day a certain time before the event.
+	* As a retailer I would like to be able to see all of the products.
+	* As a customer I would like to be able to see the products that are available.
 
 
+Delivery Day
+============
+	* As a retailer I would like to be able to define delivery days.
+	* As a retailer I would like to be able to define when the customer needs to have their order in by.
+	* As a retailer I would like to be able to update a delivery day.
+	* As a retailer I would like to be able to hide a delivery day until I have finished working out my products.
+
+	
+Orders (Customer)
+=================
+
+	* As a customer I would like to be able to place an order for delivery on one of the delivery days.
+	* As a retailer I would like to be able to close orders for a delivery day a certain time before the event.
+
+	* As a customer I would like to be able to cancel my order before the last order time has passed.
+	* As a customer I would like to be able to change my order before the last order time has passed.
+
+Orders (Retailer)
+=================
 * As a retailer I would like to be able to view a summary of my orders grouped by product for a delivery day.
 
 * As a retailer I would like to be able to view all of the orders for a delivery day.
@@ -53,7 +49,18 @@ As a retailer what happens when I stuff up?
 * As a retailer I would like to be able to provide a discount on an order.
 * As a retailer I would like to be able to create an order for a customer.
 
-* As a retailer I would like to be able to hide a future delivery until I have finished working out my products.
+
+Retailer Orders
+===============
+	* As a retailer I would like it so that if a product is deactivated it cannot be added to any orders.
+
+* As a retailer I would like to still process deactivated products if they already exist in an order.
+* If a product is deactivated and an existing order exists the quantity cannot be increase by the customer.
+
+* As a retailer I will need to be able to enter orders for my customers as some of them might still prefer to call or email their orders.
+
+
+
 
 
 

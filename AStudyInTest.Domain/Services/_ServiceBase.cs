@@ -13,12 +13,16 @@ namespace AStudyInTest.Domain.Services
         protected ICurrentUser CurrentUser { get; }
         protected IQueryable<T> Table { get; }
 
+        #region Constructors...
+
         public ServiceBase(DatabaseContext databaseContext, ICurrentUser currentUser)
         {
             this.DatabaseContext = databaseContext;
             this.CurrentUser = currentUser;
             this.Table = this.DatabaseContext.Set<T>();
         }
+
+        #endregion
 
         /// <summary>Returns the item from the datastore. If the item doesn't exist it will throw a NotFoundException.</summary>
         public async Task<T> GetAsync(int id)

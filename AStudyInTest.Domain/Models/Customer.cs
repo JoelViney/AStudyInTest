@@ -5,6 +5,15 @@ namespace AStudyInTest.Domain.Models
 {
     public class Customer : ModelBase
     {
+        #region Constructors...
+
+        public Customer()
+        {
+
+        }
+
+        #endregion
+
         [Required, MaxLength(50)]
         public string Name { get; set; }
     }
