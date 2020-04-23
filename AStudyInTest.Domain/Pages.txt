@@ -1,0 +1,23 @@
+﻿
+
+Login
+Logout
+Forgot Password
+Change Password
+Change Email Address
+Create Account -> Name | Email | Postcode (For deliveries)
+View Account -> Name | Email | Address | Phone 
+
+Home -> Upcomming Deliveries
+	-> Products -> Add To Cart
+
+View Cart 
+	-> Change Delivery Date
+	-> Quantity
+	-> Remove from Cart
+
+Checkout -> Payment | Address
+
+Admin
+	Delivery Day -> Add / Edit / Delete
+	Products -> Add / Edit / Delete

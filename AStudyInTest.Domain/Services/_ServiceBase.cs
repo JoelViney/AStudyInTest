@@ -15,7 +15,7 @@ namespace AStudyInTest.Domain.Services
 
         #region Constructors...
 
-        public ServiceBase(DatabaseContext databaseContext, ICurrentUser currentUser)
+        protected ServiceBase(DatabaseContext databaseContext, ICurrentUser currentUser)
         {
             this.DatabaseContext = databaseContext;
             this.CurrentUser = currentUser;
